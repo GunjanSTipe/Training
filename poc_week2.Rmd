@@ -1,6 +1,11 @@
-#install.packages('dplyr')
-#install.packages('readxl')
-#install.packages('tidyr')
+---
+title: "Untitled"
+author: "Gunjan"
+date: "2026-01-16"
+output: html_document
+---
+
+```{r}
 library(tidyr)
 library(readxl)
 library(dplyr)
@@ -105,5 +110,9 @@ ggplot(dfCountryMaster,aes(x=GDP.per.capita.2017,y=Under.5.Mortality.Rate.2017))
 ggplot(dfCountryMaster,aes(x=GDP.per.capita.2017,y=Under.5.Mortality.Rate.2017))+
   geom_point(alpha=0.5,na.rm = TRUE,size=2,aes(colour = Region))+
   labs(title = 'Plot of mortality rate under 5 against GDP and region')
+
+
+
+```
 
 

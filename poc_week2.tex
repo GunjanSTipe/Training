@@ -1,0 +1,405 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={POC\_week2},
+  pdfauthor={Gunjan},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{POC\_week2}
+\author{Gunjan}
+\date{2026-01-16}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyr)}
+\FunctionTok{library}\NormalTok{(readxl)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{setwd}\NormalTok{(}\StringTok{\textquotesingle{}D:/ClinicalPOC\textquotesingle{}}\NormalTok{)}
+\NormalTok{CSV\_file }\OtherTok{=} \StringTok{\textquotesingle{}./DS/Countries Population.csv\textquotesingle{}}
+\NormalTok{file2 }\OtherTok{=} \StringTok{\textquotesingle{}./DS/Countries Region Mapping.xlsx\textquotesingle{}}
+
+\NormalTok{dfRM }\OtherTok{=} \FunctionTok{read\_excel}\NormalTok{(file2)}
+\NormalTok{CSV2 }\OtherTok{=} \StringTok{\textquotesingle{}./DS/Countries Indicators.csv\textquotesingle{}}
+\NormalTok{dfCI }\OtherTok{=} \FunctionTok{read.csv}\NormalTok{(CSV2)}
+
+\CommentTok{\#Create data frame "dfCountries", load countries population file in it.}
+\NormalTok{dfCountries }\OtherTok{=} \FunctionTok{read.csv}\NormalTok{(CSV\_file)}
+
+
+\CommentTok{\#Sort countries according to their population in ascending and descending order}
+\NormalTok{countries\_ascending }\OtherTok{=} \FunctionTok{arrange}\NormalTok{(dfCountries,Total.Population}\FloatTok{.2017}\NormalTok{)}
+\NormalTok{countries\_descending }\OtherTok{=} \FunctionTok{arrange}\NormalTok{(dfCountries,}\FunctionTok{desc}\NormalTok{(Total.Population}\FloatTok{.2017}\NormalTok{))}
+
+
+
+\CommentTok{\#A vector of countries with population more than 10000000}
+\NormalTok{Populated\_countries }\OtherTok{=} \FunctionTok{filter}\NormalTok{(dfCountries,Total.Population}\FloatTok{.2017}\SpecialCharTok{\textgreater{}}\DecValTok{10000000}\NormalTok{)[,}\DecValTok{1}\NormalTok{]}
+
+
+
+\CommentTok{\#Create a dataframe "dfBigAndSmall" that has countries with population greater than 10M and less than 2M.}
+\NormalTok{dfBigAndSmall }\OtherTok{=} \FunctionTok{filter}\NormalTok{(dfCountries,Total.Population}\FloatTok{.2017}\SpecialCharTok{\textgreater{}}\DecValTok{10000000} \SpecialCharTok{|}\NormalTok{ Total.Population}\FloatTok{.2017}\SpecialCharTok{\textless{}}\DecValTok{2000000}\NormalTok{)}
+ 
+
+
+\CommentTok{\#Create levels of income group from dataset "Countries region mapping" levels: Low, Lower mid, Upper mid, High}
+\FunctionTok{factor}\NormalTok{(dfRM}\SpecialCharTok{$}\NormalTok{IncomeGroup)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1] High income         Low income          Lower middle income
+##   [4] Upper middle income High income         High income        
+##   [7] High income         Upper middle income Upper middle income
+##  [10] High income         High income         High income        
+##  [13] Upper middle income Low income          High income        
+##  [16] Low income          Low income          Lower middle income
+##  [19] Upper middle income High income         High income        
+##  [22] Upper middle income Upper middle income Upper middle income
+##  [25] High income         Lower middle income Upper middle income
+##  [28] High income         High income         Lower middle income
+##  [31] Upper middle income Low income          High income        
+##  [34] High income         High income         High income        
+##  [37] Upper middle income Lower middle income Lower middle income
+##  [40] Low income          Lower middle income Upper middle income
+##  [43] Low income          Lower middle income Upper middle income
+##  [46] Upper middle income High income         High income        
+##  [49] High income         High income         High income        
+##  [52] Lower middle income Upper middle income High income        
+##  [55] Upper middle income Upper middle income Upper middle income
+##  [58] Lower middle income Low income          High income        
+##  [61] High income         Low income          High income        
+##  [64] Upper middle income High income         High income        
+##  [67] Lower middle income Upper middle income High income        
+##  [70] Lower middle income Lower middle income High income        
+##  [73] Low income          Low income          Low income         
+##  [76] Upper middle income High income         Upper middle income
+##  [79] High income         Upper middle income High income        
+##  [82] Upper middle income High income         Lower middle income
+##  [85] High income         Low income          High income        
+##  [88] Lower middle income High income         Lower middle income
+##  [91] High income         Upper middle income Upper middle income
+##  [94] High income         High income         High income        
+##  [97] Upper middle income Upper middle income High income        
+## [100] Upper middle income Lower middle income Lower middle income
+## [103] Lower middle income Lower middle income High income        
+## [106] High income         High income         Lower middle income
+## [109] Upper middle income Low income          Upper middle income
+## [112] Upper middle income High income         Lower middle income
+## [115] Lower middle income High income         High income        
+## [118] High income         High income         High income        
+## [121] Lower middle income High income         Lower middle income
+## [124] Low income          Upper middle income Upper middle income
+## [127] Upper middle income Upper middle income Low income         
+## [130] High income         Lower middle income Upper middle income
+## [133] Lower middle income High income         Low income         
+## [136] Lower middle income Upper middle income Low income         
+## [139] Upper middle income High income         Low income         
+## [142] Lower middle income Lower middle income High income        
+## [145] High income         Low income          Upper middle income
+## [148] High income         High income         Lower middle income
+## [151] High income         Upper middle income Lower middle income
+## [154] High income         Lower middle income High income        
+## [157] High income         Low income          High income        
+## [160] Upper middle income Lower middle income High income        
+## [163] High income         Upper middle income Upper middle income
+## [166] Low income          High income         Lower middle income
+## [169] Low income          High income         Lower middle income
+## [172] Low income          Lower middle income High income        
+## [175] Low income          Upper middle income Low income         
+## [178] Lower middle income Upper middle income High income        
+## [181] High income         High income         Lower middle income
+## [184] High income         High income         Low income         
+## [187] High income         Low income          Low income         
+## [190] Upper middle income Low income          Upper middle income
+## [193] Lower middle income Upper middle income High income        
+## [196] Lower middle income Upper middle income Upper middle income
+## [199] Low income          Low income          Lower middle income
+## [202] High income         High income         Lower middle income
+## [205] Upper middle income Upper middle income High income        
+## [208] High income         Lower middle income Lower middle income
+## [211] Upper middle income Lower middle income Low income         
+## [214] Upper middle income Lower middle income Low income         
+## Levels: High income Low income Lower middle income Upper middle income
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Income\_Level }\OtherTok{=} \FunctionTok{pivot\_wider}\NormalTok{(dfRM,}\AttributeTok{names\_from=}\NormalTok{IncomeGroup,}\AttributeTok{values\_from=}\NormalTok{Country.Code,}\AttributeTok{values\_fn =}\NormalTok{ list)}
+\FunctionTok{rename}\NormalTok{(Income\_Level,}\StringTok{\textquotesingle{}Low\textquotesingle{}} \OtherTok{=} \StringTok{\textquotesingle{}Low income\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Lower mid\textquotesingle{}} \OtherTok{=} \StringTok{\textquotesingle{}Lower middle income\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Upper mid\textquotesingle{}} \OtherTok{=} \StringTok{\textquotesingle{}Upper middle income\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}High\textquotesingle{}} \OtherTok{=} \StringTok{\textquotesingle{}High income\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 7 x 5
+##   Region                     High       Low        `Lower mid` `Upper mid`
+##   <chr>                      <list>     <list>     <list>      <list>     
+## 1 Latin America & Caribbean  <chr [18]> <chr [1]>  <chr [4]>   <chr [19]> 
+## 2 South Asia                 <NULL>     <chr [2]>  <chr [5]>   <chr [1]>  
+## 3 Sub-Saharan Africa         <chr [1]>  <chr [27]> <chr [14]>  <chr [6]>  
+## 4 Europe & Central Asia      <chr [37]> <chr [1]>  <chr [6]>   <chr [14]> 
+## 5 Middle East & North Africa <chr [8]>  <chr [2]>  <chr [5]>   <chr [6]>  
+## 6 East Asia & Pacific        <chr [13]> <chr [1]>  <chr [13]>  <chr [9]>  
+## 7 North America              <chr [3]>  <NULL>     <NULL>      <NULL>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Merge the 3 datasets attached into 1 dataframe : "dfCountryMaster"}
+\NormalTok{DS1\_2 }\OtherTok{=} \FunctionTok{full\_join}\NormalTok{(dfCountries, dfRM, }\AttributeTok{by =} \FunctionTok{join\_by}\NormalTok{(}\StringTok{"Country.Code"}\NormalTok{))}
+\NormalTok{dfCountryMaster }\OtherTok{=} \FunctionTok{full\_join}\NormalTok{(DS1\_2, dfCI, }\AttributeTok{by =} \FunctionTok{join\_by}\NormalTok{(}\StringTok{"Country.Code"}\NormalTok{))}
+
+\CommentTok{\#Summarize dfCountryMaster countries by region.}
+\NormalTok{dfCountryMaster }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(Region) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarise}\NormalTok{(}\AttributeTok{Number.of.Country =} \FunctionTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 8 x 2
+##   Region                     Number.of.Country
+##   <chr>                                  <int>
+## 1 East Asia & Pacific                       36
+## 2 Europe & Central Asia                     58
+## 3 Latin America & Caribbean                 42
+## 4 Middle East & North Africa                21
+## 5 North America                              3
+## 6 South Asia                                 8
+## 7 Sub-Saharan Africa                        48
+## 8 <NA>                                      44
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#36+58+42+21+3+8+48+44 }
+
+\DocumentationTok{\#\#8}
+\CommentTok{\#Summarize dfCountryMaster countries by region and income group.}
+\NormalTok{Cntry\_by\_reg\_inc }\OtherTok{=}\NormalTok{ dfCountryMaster }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(Region,IncomeGroup) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarise}\NormalTok{(}\AttributeTok{Number.of.Country =} \FunctionTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'Region'. You can override using the
+## `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#9}
+\CommentTok{\#Summarize dfCountryMaster countries by region. Result to have the following columns in it.}
+\CommentTok{\#Number of countries.}
+\CommentTok{\#Total population in millions.}
+\CommentTok{\#Average of GDP per capita}
+\CommentTok{\#Countries with low income.}
+\CommentTok{\#Median GDP per capita}
+\CommentTok{\#minimum and maximum mortality rate under 5.}
+
+\NormalTok{dfCountryMaster}\SpecialCharTok{$}\NormalTok{GDP.per.capita}\FloatTok{.2017} \OtherTok{=} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{gsub}\NormalTok{(}\StringTok{","}\NormalTok{, }\StringTok{""}\NormalTok{, dfCountryMaster}\SpecialCharTok{$}\NormalTok{GDP.per.capita}\FloatTok{.2017}\NormalTok{))}
+
+
+\NormalTok{dfsummarise }\OtherTok{=}\NormalTok{ dfCountryMaster }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(Region) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarise}\NormalTok{(}
+  \StringTok{\textquotesingle{}Number of Countries\textquotesingle{}} \OtherTok{=} \FunctionTok{n}\NormalTok{(),}
+  \StringTok{\textquotesingle{}Total population\textquotesingle{}} \OtherTok{=} \FunctionTok{sum}\NormalTok{(Total.Population}\FloatTok{.2017}\NormalTok{,}\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{/}\DecValTok{1000000}\NormalTok{,}
+  \StringTok{\textquotesingle{}Average of GDP per capita\textquotesingle{}}\OtherTok{=}\FunctionTok{mean}\NormalTok{(GDP.per.capita}\FloatTok{.2017}\NormalTok{,}\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+  \StringTok{\textquotesingle{}Countries with low income.\textquotesingle{}}\OtherTok{=} \FunctionTok{sum}\NormalTok{(IncomeGroup }\SpecialCharTok{==} \StringTok{\textquotesingle{}Low income\textquotesingle{}}\NormalTok{),}
+  \StringTok{\textquotesingle{}Median GDP per capita\textquotesingle{}}\OtherTok{=}\FunctionTok{median}\NormalTok{(GDP.per.capita}\FloatTok{.2017}\NormalTok{,}\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+  \StringTok{\textquotesingle{}Min mortality rate under 5\textquotesingle{}}\OtherTok{=}\FunctionTok{min}\NormalTok{(Under.}\FloatTok{5.}\NormalTok{Mortality.Rate}\FloatTok{.2017}\NormalTok{,}\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+  \StringTok{\textquotesingle{}Max mortality rate under 5\textquotesingle{}}\OtherTok{=}\FunctionTok{max}\NormalTok{(Under.}\FloatTok{5.}\NormalTok{Mortality.Rate}\FloatTok{.2017}\NormalTok{,}\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)) }
+
+\CommentTok{\# 10. Write the above result in csv.}
+\FunctionTok{write.csv}\NormalTok{(dfsummarise,}\StringTok{\textquotesingle{}./DS/Summarise\_output.csv\textquotesingle{}}\NormalTok{) }
+
+\DocumentationTok{\#\#11.}
+\CommentTok{\#Histogram of gdp per capita}
+
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\FunctionTok{ggplot}\NormalTok{(dfCountryMaster,}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{GDP.per.capita}\FloatTok{.2017}\NormalTok{))}\SpecialCharTok{+}\FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{binwidth =} \DecValTok{5000}\NormalTok{,}\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{,}\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill=}\NormalTok{..count..))}\SpecialCharTok{+}\FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}Histogram of gdp per capita\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: The dot-dot notation (`..count..`) was deprecated in ggplot2 3.4.0.
+## i Please use `after_stat(count)` instead.
+## This warning is displayed once per session.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{poc_week2_files/figure-latex/unnamed-chunk-1-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#12}
+\CommentTok{\#Plot of income group by region.}
+\FunctionTok{ggplot}\NormalTok{(dfCountryMaster,}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{IncomeGroup))}\SpecialCharTok{+}\FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill=}\NormalTok{Region))}\SpecialCharTok{+}\FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Number of countries\textquotesingle{}}\NormalTok{)}\SpecialCharTok{+}\FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}Plot of income group by region\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{poc_week2_files/figure-latex/unnamed-chunk-1-2.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#13}
+\CommentTok{\#Plot of mortality rate under 5 by region}
+\FunctionTok{ggplot}\NormalTok{(dfCountryMaster,}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{Region,}\AttributeTok{y=}\NormalTok{Under.}\FloatTok{5.}\NormalTok{Mortality.Rate}\FloatTok{.2017}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{()}\SpecialCharTok{+}\FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}Plot of mortality rate under 5 by region\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 26 rows containing non-finite outside the scale range
+## (`stat_boxplot()`).
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{poc_week2_files/figure-latex/unnamed-chunk-1-3.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#14}
+\CommentTok{\#Scatter plot of mortality rate under 5 against GDP per capita.}
+\FunctionTok{ggplot}\NormalTok{(dfCountryMaster,}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{GDP.per.capita}\FloatTok{.2017}\NormalTok{,}\AttributeTok{y=}\NormalTok{Under.}\FloatTok{5.}\NormalTok{Mortality.Rate}\FloatTok{.2017}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{alpha=}\FloatTok{0.5}\NormalTok{,}\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}Scatter plot of mortality rate under 5 against GDP per capita\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{poc_week2_files/figure-latex/unnamed-chunk-1-4.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#15}
+\CommentTok{\#Plot of mortality rate under 5 against GDP and region.}
+\FunctionTok{ggplot}\NormalTok{(dfCountryMaster,}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{GDP.per.capita}\FloatTok{.2017}\NormalTok{,}\AttributeTok{y=}\NormalTok{Under.}\FloatTok{5.}\NormalTok{Mortality.Rate}\FloatTok{.2017}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{alpha=}\FloatTok{0.5}\NormalTok{,}\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{,}\AttributeTok{size=}\DecValTok{2}\NormalTok{,}\FunctionTok{aes}\NormalTok{(}\AttributeTok{colour =}\NormalTok{ Region))}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}Plot of mortality rate under 5 against GDP and region\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{poc_week2_files/figure-latex/unnamed-chunk-1-5.pdf}}
+
+\end{document}
