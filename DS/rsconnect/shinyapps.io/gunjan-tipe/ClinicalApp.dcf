@@ -1,0 +1,12 @@
+name: ClinicalApp
+title: ClinicalApp
+username: gunjan-tipe
+account: gunjan-tipe
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 16557095
+bundleId: 11517181
+url: https://gunjan-tipe.shinyapps.io/ClinicalApp/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
